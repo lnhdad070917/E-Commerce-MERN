@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model admin {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+  username String @db.VarChar(255)
+  password String @db.LongText
+}
+
+model Category{
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+  product Product[]
+}
+
+model Customer{
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+  email String @db.VarChar(255)
+  address String @db.VarChar(255)
+  no_wa String @db.VarChar(255)
+  city String @db.VarChar(255)
+  province String @db.VarChar(255)
+  postal_code String @db.VarChar(255)
+  username String @db.VarChar(255)
+  password String @db.LongText
+  sales_item Sales_Item[]
+  sales Sales[]
+}
+
+model Product{
+  id Int @id @default(autoincrement())
+  code String @db.VarChar(255)
+  id_category Int
+  category Category @relation(fields: [id_category], references: [id])
+  name String @db.VarChar(255)
+  img String @db.VarChar(255)
+  weight Int
+  stock Int
+  price Decimal @db.Decimal(19,4)
+  price_discount Decimal @db.Decimal(19,4)
+  id_parent Int 
+  description String @db.Text
+  variant String @db.VarChar(255)
+  type Type @default(parent)
+  status Status_Type @default(active)
+  sales_item Sales_Item[]
+}
+
+enum Type {
+  parent
+  child
+}
+
+enum Status_Type{
+  active 
+  inactive
+}
+
+model Sales {
+  id Int @id @default(autoincrement())
+  no_invoice String @db.VarChar(255)
+  code_status Int
+  id_customer Int
+  customer Customer @relation(fields: [id_customer], references: [id])
+  price Decimal @db.Decimal(19,4)
+  total_pay Decimal @db.Decimal(19,4)
+  delivery_cost Decimal @db.Decimal(19,4)
+  delivery_name String @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  sales_item Sales_Item[]
+}
+
+model Sales_Item {
+  id Int @id @default(autoincrement())
+  id_product Int
+  product Product @relation(fields: [id_product], references: [id])
+  id_sales Int
+  sales Sales @relation(fields: [id_sales], references: [id])
+  id_customer Int
+  customer Customer @relation(fields: [id_customer], references:[id])
+  qty Int
+  price Decimal @db.Decimal(19,4)
+  ket String @db.Text
+}
+
+model Status {
+  id Int @id @default(autoincrement())
+  code String @db.VarChar(255)
+  label String @db.VarChar(255)
+}
