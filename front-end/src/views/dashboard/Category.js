@@ -33,7 +33,7 @@ const Category = () => {
   useEffect(() => {
     fetch("http://localhost:8000/category", { method: "GET" })
       .then((response) => response.json())
-      .then((data) => console.log(data.data))
+      .then((data) => setTableData(data.data))
       .catch((error) => console.error(error.message));
   }, []);
 
@@ -138,17 +138,20 @@ const Category = () => {
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
-            <CCardHeader>Category</CCardHeader>
-            <CButton
-              onClick={() => {
-                openModalCreate();
-              }}
-              color="success"
-              size="sm"
-              className="text-white"
-            >
-              Create
-            </CButton>
+            <CCardHeader className="d-flex justify-content-between">
+              Category{" "}
+              <CButton
+                onClick={() => {
+                  openModalCreate();
+                }}
+                color="success"
+                size="sm"
+                className="text-white"
+              >
+                Create
+              </CButton>
+            </CCardHeader>
+
             <CCardBody>
               <br />
 
@@ -157,6 +160,7 @@ const Category = () => {
                   <CTableRow>
                     <CTableHeaderCell>ID</CTableHeaderCell>
                     <CTableHeaderCell>Name</CTableHeaderCell>
+                    <CTableHeaderCell>Action</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -220,18 +224,20 @@ const Category = () => {
               <div>
                 <CRow>
                   <CFormLabel>Name</CFormLabel>
-                  <CFormInput
-                    id="name"
-                    type="text"
-                    value={modalData.name}
-                    onChange={(e) => {
-                      setModalData((prevData) => ({
-                        ...prevData,
-                        name: e.target.value,
-                      }));
-                    }}
-                    required
-                  />
+                  <CCol>
+                    <CFormInput
+                      id="name"
+                      type="text"
+                      value={modalData.name}
+                      onChange={(e) => {
+                        setModalData((prevData) => ({
+                          ...prevData,
+                          name: e.target.value,
+                        }));
+                      }}
+                      required
+                    />
+                  </CCol>
                 </CRow>
               </div>
             )}
@@ -268,18 +274,20 @@ const Category = () => {
               <div>
                 <CRow>
                   <CFormLabel>Name</CFormLabel>
-                  <CFormInput
-                    id="name"
-                    type="text"
-                    value={modalData.name}
-                    onChange={(e) => {
-                      setModalData((prevData) => ({
-                        ...prevData,
-                        name: e.target.value,
-                      }));
-                    }}
-                    required
-                  />
+                  <CCol>
+                    <CFormInput
+                      id="name"
+                      type="text"
+                      value={modalData.name}
+                      onChange={(e) => {
+                        setModalData((prevData) => ({
+                          ...prevData,
+                          name: e.target.value,
+                        }));
+                      }}
+                      required
+                    />
+                  </CCol>
                 </CRow>
               </div>
             )}

@@ -210,8 +210,8 @@ const Dashboard = () => {
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
-            <CCardHeader>
-              Traffic {" & "} Sales{" "}
+            <CCardHeader className="d-flex justify-content-between">
+              Product
               <CButton
                 onClick={() => {
                   OpenModalCreate();

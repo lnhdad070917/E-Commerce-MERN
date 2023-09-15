@@ -19,19 +19,19 @@ const _nav = [
   {
     component: CNavItem,
     name: "Status",
-    to: "/dashboard",
+    to: "/admin/dashboard",
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: "Sales",
-    to: "/dashboard",
+    to: "/admin/dashboard",
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: "Sales Items",
-    to: "/dashboard",
+    to: "/admin/dashboard",
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
 ];

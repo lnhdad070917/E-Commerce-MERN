@@ -24,7 +24,7 @@ function NumberInputWithNumber({ onChange }) {
         -
       </button>
       <input
-        className="w-25 text-center"
+        className="w-25"
         type="number"
         value={number}
         onChange={(e) => handleNumberChange(parseInt(e.target.value))}
